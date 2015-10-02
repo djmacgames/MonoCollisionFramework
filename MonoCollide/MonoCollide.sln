@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoCollide", "MonoCollide\MonoCollide.csproj", "{CA35BE3F-8850-4F47-97B3-3EF3F4527B91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoCollisionFramework", "MonoCollisionFramework\MonoCollisionFramework.csproj", "{A3B8181B-9E3F-467E-87C6-99FD823FDF1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoCollisionPipeline", "MonoCollisionPipeline\MonoCollisionPipeline.csproj", "{93D67EF0-1F4B-4955-942A-EB6C0EA39EB9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA35BE3F-8850-4F47-97B3-3EF3F4527B91}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{CA35BE3F-8850-4F47-97B3-3EF3F4527B91}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{CA35BE3F-8850-4F47-97B3-3EF3F4527B91}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{CA35BE3F-8850-4F47-97B3-3EF3F4527B91}.Debug|x86.ActiveCfg = Debug|x86
+		{CA35BE3F-8850-4F47-97B3-3EF3F4527B91}.Debug|x86.Build.0 = Debug|x86
+		{CA35BE3F-8850-4F47-97B3-3EF3F4527B91}.Release|Any CPU.ActiveCfg = Release|x86
+		{CA35BE3F-8850-4F47-97B3-3EF3F4527B91}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{CA35BE3F-8850-4F47-97B3-3EF3F4527B91}.Release|Mixed Platforms.Build.0 = Release|x86
+		{CA35BE3F-8850-4F47-97B3-3EF3F4527B91}.Release|x86.ActiveCfg = Release|x86
+		{CA35BE3F-8850-4F47-97B3-3EF3F4527B91}.Release|x86.Build.0 = Release|x86
+		{A3B8181B-9E3F-467E-87C6-99FD823FDF1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3B8181B-9E3F-467E-87C6-99FD823FDF1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3B8181B-9E3F-467E-87C6-99FD823FDF1A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A3B8181B-9E3F-467E-87C6-99FD823FDF1A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A3B8181B-9E3F-467E-87C6-99FD823FDF1A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A3B8181B-9E3F-467E-87C6-99FD823FDF1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3B8181B-9E3F-467E-87C6-99FD823FDF1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3B8181B-9E3F-467E-87C6-99FD823FDF1A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A3B8181B-9E3F-467E-87C6-99FD823FDF1A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A3B8181B-9E3F-467E-87C6-99FD823FDF1A}.Release|x86.ActiveCfg = Release|Any CPU
+		{93D67EF0-1F4B-4955-942A-EB6C0EA39EB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93D67EF0-1F4B-4955-942A-EB6C0EA39EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93D67EF0-1F4B-4955-942A-EB6C0EA39EB9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{93D67EF0-1F4B-4955-942A-EB6C0EA39EB9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{93D67EF0-1F4B-4955-942A-EB6C0EA39EB9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{93D67EF0-1F4B-4955-942A-EB6C0EA39EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93D67EF0-1F4B-4955-942A-EB6C0EA39EB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93D67EF0-1F4B-4955-942A-EB6C0EA39EB9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{93D67EF0-1F4B-4955-942A-EB6C0EA39EB9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{93D67EF0-1F4B-4955-942A-EB6C0EA39EB9}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
