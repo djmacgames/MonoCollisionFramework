@@ -9,6 +9,8 @@ namespace MonoCollisionFramework
     {
         public static void AddTriangles(ModelMesh mesh, List<Vector3> positions, List<int> indices)
         {
+            int count = positions.Count;
+
             foreach (ModelMeshPart part in mesh.MeshParts)
             {
                 Vector3[] vb = new Vector3[part.NumVertices];
@@ -20,7 +22,7 @@ namespace MonoCollisionFramework
 
                 foreach (short i in ib)
                 {
-                    indices.Add(positions.Count + i);
+                    indices.Add(count + i);
                 }
                 positions.AddRange(vb);
             }

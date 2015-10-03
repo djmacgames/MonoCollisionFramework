@@ -8,7 +8,31 @@ namespace MonoCollisionPipeline
         private float[] amounts = null;
         private int i = 0;
 
+        public Noise()
+        {
+            Load(typeof(Noise), "MonoCollisionPipeline.Noise.txt");
+        }
+
         public Noise(Type type, string resourceName)
+        {
+            Load(type, resourceName);
+        }
+
+        public void Reset()
+        {
+            i = 0;
+        }
+
+        public float Next()
+        {
+            float amount = amounts[i];
+
+            i = (i + 1) % amounts.Length;
+
+            return amount;
+        }
+
+        private void Load(Type type, string resourceName)
         {
             StreamReader reader = null;
 
@@ -31,20 +55,6 @@ namespace MonoCollisionPipeline
                     reader.Dispose();
                 }
             }
-        }
-
-        public void Reset()
-        {
-            i = 0;
-        }
-
-        public float Next()
-        {
-            float amount = amounts[i];
-
-            i = (i + 1) % amounts.Length;
-
-            return amount;
         }
     }
 }

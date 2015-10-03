@@ -19,7 +19,7 @@ namespace MonoCollisionPipeline
             TImport root = new TImport();
             MeshBuilder builder = new MeshBuilder();
             Matrix m = Matrix.Identity;
-            Noise noise = new Noise(typeof(TextModelImporter), "MonoCollisionPipeline.Noise.txt");
+            Noise noise = new Noise();
             Dictionary<string, MaterialContent> materials = new Dictionary<string, MaterialContent>();
             string[] lines = File.ReadAllLines(filename);
             int lineNum = 1;
