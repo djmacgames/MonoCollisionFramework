@@ -92,6 +92,25 @@ namespace MonoCollisionPipeline
                         m *= Matrix.CreateRotationY(MathHelper.ToRadians(float.Parse(tokens[2])));
                         m *= Matrix.CreateRotationZ(MathHelper.ToRadians(float.Parse(tokens[3])));
                     }
+                    else if (tokens[0] == "rotateOrientation")
+                    {
+                        Vector3 u = Vector3.Normalize(new Vector3(float.Parse(tokens[1]), float.Parse(tokens[2]), float.Parse(tokens[3])));
+                        Vector3 r = Vector3.Normalize(new Vector3(float.Parse(tokens[4]), float.Parse(tokens[5]), float.Parse(tokens[6])));
+                        Vector3 f = Vector3.Normalize(Vector3.Cross(r, u));
+                        Matrix o = Matrix.Identity;
+
+                        r = Vector3.Normalize(Vector3.Cross(f, u));
+                        o.Up = u;
+                        o.Right = r;
+                        o.Forward = f;
+                        m *= o;
+                    }
+                    else if (tokens[0] == "rotateAxisAngle")
+                    {
+                        Vector3 axis = new Vector3(float.Parse(tokens[1]), float.Parse(tokens[2]), float.Parse(tokens[3]));
+
+                        m *= Matrix.CreateFromAxisAngle(Vector3.Normalize(axis), MathHelper.ToRadians(float.Parse(tokens[4])));
+                    }
                     else if (tokens[0] == "build")
                     {
                         builder.Transform(m);

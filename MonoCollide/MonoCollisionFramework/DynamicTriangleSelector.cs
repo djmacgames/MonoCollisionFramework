@@ -11,14 +11,14 @@ namespace MonoCollisionFramework
         private BoundingBox bounds;
         private int count;
 
-        public DynamicTriangleSelector(IWorld world, List<Vector3> positions, List<int> indices)
+        public DynamicTriangleSelector(IWorld world, List<Vector3> positions)
         {
-            triangles = new List<Triangle>(indices.Count / 3);
-            for (int i = 0; i != indices.Count; )
+            triangles = new List<Triangle>(positions.Count / 3);
+            for (int i = 0; i != positions.Count; )
             {
-                Vector3 a = positions[indices[i++]];
-                Vector3 b = positions[indices[i++]];
-                Vector3 c = positions[indices[i++]];
+                Vector3 a = positions[i++];
+                Vector3 b = positions[i++];
+                Vector3 c = positions[i++];
 
                 triangles.Add(new Triangle(a, b, c));
             }

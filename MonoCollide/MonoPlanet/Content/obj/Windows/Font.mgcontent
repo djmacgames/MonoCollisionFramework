@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Dev/MonoCollide/MonoCollide/Content/Font.spritefont</SourceFile>
+  <SourceFile>C:/Dev/MonoCollide/MonoPlanet/Content/Font.spritefont</SourceFile>
   <SourceTime>2015-09-25T07:19:36.2050836-04:00</SourceTime>
-  <DestFile>C:/Dev/MonoCollide/MonoCollide/Content/bin/Windows/Font.xnb</DestFile>
+  <DestFile>C:/Dev/MonoCollide/MonoPlanet/Content/bin/Windows/Font.xnb</DestFile>
   <DestTime>2015-10-03T19:13:03.2389831-04:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2015-04-29T13:14:44-04:00</ImporterTime>

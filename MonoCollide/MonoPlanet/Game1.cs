@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoCollisionFramework;
 
-namespace MonoCollide
+namespace MonoPlanet
 {
     /// <summary>
     /// This is the main type for your game.
@@ -15,19 +15,18 @@ namespace MonoCollide
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Model scene;
-        Platformer platformer = new Platformer(new Collider());
-        Vector3 startPosition;
         SpriteFont font;
+        Platformer platformer = new Platformer(new Collider());
+        Vector3 zeroTranslation = Vector3.Zero;
         Texture2D sky;
-        int triangeCount = 0;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
             IsFixedTimeStep = true;
             graphics.SynchronizeWithVerticalRetrace = true;
+            IsMouseVisible = true;
         }
 
         /// <summary>
@@ -54,7 +53,6 @@ namespace MonoCollide
 
             // TODO: use this.Content to load your game content here
             scene = Content.Load<Model>("Scene");
-
             foreach (ModelMesh mesh in scene.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)
@@ -65,10 +63,10 @@ namespace MonoCollide
                 }
                 if (mesh.Name == "ball")
                 {
-                    BoundingBox b = MeshHelper.GetBounds(mesh);
+                    BoundingBox bounds = MeshHelper.GetBounds(mesh);
 
-                    platformer.Position = (b.Max + b.Min) / 2;
-                    platformer.CollisionRadius = (b.Max - b.Min).Length() / 2 * 0.9f;
+                    platformer.Position = (bounds.Max + bounds.Min) / 2;
+                    platformer.CollisionRadius = (bounds.Max - bounds.Min).Length() / 2 * 0.9f;
                 }
                 else
                 {
@@ -76,17 +74,11 @@ namespace MonoCollide
 
                     MeshHelper.AddTriangles(mesh, positions);
 
-                    ITriangleSelector selector = new StaticTriangleSelector(Matrix.Identity, positions, 16);
-
-                    platformer.Collider.Selectors.Add(selector);
-                    triangeCount += selector.Count;
+                    platformer.Collider.Selectors.Add(new StaticTriangleSelector(Matrix.Identity, positions, 16));
                 }
             }
-            startPosition = platformer.Position;
-
-            platformer.JumpHeight = 600;
-            platformer.HorizontalSpeed = 200;
-            platformer.JumpHorizontalSpeed = 300;
+            zeroTranslation = -platformer.Position;
+            platformer.PlanetCollision = true;
 
             font = Content.Load<SpriteFont>("Font");
             sky = Content.Load<Texture2D>("Sky");
@@ -112,16 +104,8 @@ namespace MonoCollide
                 Exit();
 
             // TODO: Add your update logic here
-
             platformer.HandleMouseAndKeyboard(GraphicsDevice.Viewport);
             platformer.Update(gameTime);
-
-            if (platformer.Position.Y < -400)
-            {
-                platformer.Position = startPosition;
-                platformer.Angle = 0;
-                platformer.DirectionMatrix = Matrix.Identity;
-            }
 
             base.Update(gameTime);
         }
@@ -132,18 +116,10 @@ namespace MonoCollide
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            string[] lines = new string[]
-            {
-                "Tested " + platformer.Collider.TrianglesTested + " of " + triangeCount + " triangle(s), in " + platformer.Collider.LoopCount + " loop(s)",
-                "Frame rate = " + (int)(1.0f / gameTime.ElapsedGameTime.TotalSeconds),
-                "Press space key to jump",
-                "Press and hold left mouse button to move in the direction of the mouse"
-            };
-
-            GraphicsDevice.SamplerStates[0] = SamplerState.AnisotropicWrap;
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-            GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+            GraphicsDevice.BlendState = BlendState.Opaque;
+            GraphicsDevice.SamplerStates[0] = SamplerState.AnisotropicWrap;
             GraphicsDevice.Clear(Color.DarkGray);
 
             spriteBatch.Begin(SpriteSortMode.Immediate);
@@ -155,25 +131,22 @@ namespace MonoCollide
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.SamplerStates[0] = SamplerState.AnisotropicWrap;
 
-            Vector3 position = platformer.Position;
-
-            if (position.Y < 0)
-            {
-                position.Y = 0;
-            }
-
+            // TODO: Add your drawing code here
             Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(60), GraphicsDevice.Viewport.AspectRatio, 1, 5000);
-            Matrix view = Matrix.CreateLookAt(position + platformer.Offset, position, Vector3.UnitY);
+            Matrix view = Matrix.CreateLookAt(platformer.Position + 100 * platformer.Up + 100 * platformer.Forward, platformer.Position, platformer.Up);
 
             foreach (ModelMesh mesh in scene.Meshes)
             {
-                foreach (IEffectMatrices effect in mesh.Effects)
+                foreach (BasicEffect effect in mesh.Effects)
                 {
+                    effect.DirectionalLight0.Direction = platformer.Right;
+                    effect.DirectionalLight1.Direction = -platformer.Up;
+                    effect.DirectionalLight2.Direction = -platformer.Forward;
                     effect.Projection = projection;
                     effect.View = view;
                     if (mesh.Name == "ball")
                     {
-                        effect.World = platformer.CalcWorld(1, -startPosition);
+                        effect.World = platformer.CalcWorld(1, zeroTranslation);
                     }
                     else
                     {
@@ -184,10 +157,7 @@ namespace MonoCollide
             }
 
             spriteBatch.Begin(SpriteSortMode.Immediate);
-            for (int i = 0; i != lines.Length; i++)
-            {
-                spriteBatch.DrawString(font, lines[i], new Vector2(0, i * font.MeasureString(lines[i]).Y), Color.DarkBlue);
-            }
+            spriteBatch.DrawString(font, "Press space key to jump and hold left mouse button down to move in that direction", Vector2.Zero, Color.LightBlue);
             spriteBatch.End();
 
             base.Draw(gameTime);

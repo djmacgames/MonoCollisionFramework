@@ -86,9 +86,9 @@ namespace MonoCollisionFramework
         private TreeNode root;
         private int count;
 
-        public StaticTriangleSelector(Matrix world, List<Vector3> positions, List<int> indices, int minimumTrianglesPerNode)
+        public StaticTriangleSelector(Matrix world, List<Vector3> positions, int minimumTrianglesPerNode)
         {
-            List<Triangle> triangles = new List<Triangle>(indices.Count / 3);
+            List<Triangle> triangles = new List<Triangle>(positions.Count / 3);
             BoundingBox bounds;
 
             for (int i = 0; i != positions.Count; i++)
@@ -100,11 +100,11 @@ namespace MonoCollisionFramework
             bounds.Min -= new Vector3(1, 1, 1);
             bounds.Max += new Vector3(1, 1, 1);
 
-            for (int i = 0; i != indices.Count; )
+            for (int i = 0; i != positions.Count; )
             {
-                Vector3 a = positions[indices[i++]];
-                Vector3 b = positions[indices[i++]];
-                Vector3 c = positions[indices[i++]];
+                Vector3 a = positions[i++];
+                Vector3 b = positions[i++];
+                Vector3 c = positions[i++];
 
                 triangles.Add(new Triangle(a, b, c));
             }

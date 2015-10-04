@@ -8,11 +8,12 @@
 # translate x y z
 # scale x y z
 # rotate x y z
+# rotateOrientation upX upY upZ rightX rightY rightZ
+# rotateAxisAngle x y z angle
 # build name materialName
 
 material ball 1 1 1 0 0 0 64 Diamond.png
-material grass 2 2 2 0 0 0 64 Grass.png
-material orangeChecker 2 1 0 1 1 1 64 Checker.png
+material grass 1.5 1.5 1.5 0 0 0 100 Grass.png
 material checker 1 1 1 1 1 1 64 Checker.png
 
 box 24 24 24 1 1 1 24
@@ -45,7 +46,7 @@ smooth
 rotate 0 -10 20
 translate 300 50 100
 calcNormals true
-build terrain orangeChecker
+build terrain checker
 
 box 100 100 100 12 12 12 100
 calcNormals true
@@ -57,7 +58,7 @@ smooth
 rotate 0 -30 20
 translate 400 75 200
 calcNormals true
-build terrain orangeChecker
+build terrain checker
 
 box 300 100 300 16 5 16 100
 calcNormals true

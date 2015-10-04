@@ -4,8 +4,8 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Dev/MonoCollide/MonoCollide/Content/Font.spritefont</File>
-    <File>C:/Dev/MonoCollide/MonoCollide/Content/Scene.txt</File>
-    <File>C:/Dev/MonoCollide/MonoCollide/Content/Sky.png</File>
+    <File>C:/Dev/MonoCollide/MonoPlanet/Content/Font.spritefont</File>
+    <File>C:/Dev/MonoCollide/MonoPlanet/Content/Scene.txt</File>
+    <File>C:/Dev/MonoCollide/MonoPlanet/Content/Sky.png</File>
   </SourceFiles>
 </SourceFileCollection>

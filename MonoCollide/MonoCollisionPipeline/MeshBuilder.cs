@@ -525,8 +525,18 @@ namespace MonoCollisionPipeline
             {
                 for (int j = 0; j != divsY + 1; j++)
                 {
-                    AddVertex(vertices, -sx / 2 + i / (float)divsX * sx, -sy / 2 + j / (float)divsY * sy, -sz / 2, i, j, 0, divsY, divsZ);
-                    AddVertex(vertices, -sx / 2 + i / (float)divsX * sx, -sy / 2 + j / (float)divsY * sy, +sz / 2, i, j, divsZ, divsY, divsZ);
+                    AddVertex(
+                        vertices,
+                        -sx / 2 + i / (float)divsX * sx,
+                        -sy / 2 + j / (float)divsY * sy,
+                        -sz / 2,
+                        i, j, 0, divsY, divsZ);
+                    AddVertex(
+                        vertices,
+                        -sx / 2 + i / (float)divsX * sx,
+                        -sy / 2 + j / (float)divsY * sy,
+                        +sz / 2,
+                        i, j, divsZ, divsY, divsZ);
                 }
             }
 
@@ -534,8 +544,18 @@ namespace MonoCollisionPipeline
             {
                 for (int j = 0; j != divsZ + 1; j++)
                 {
-                    AddVertex(vertices, -sx / 2, -sy / 2 + i / (float)divsY * sy, -sz / 2 + j / (float)divsZ * sz, 0, i, j, divsY, divsZ);
-                    AddVertex(vertices, +sx / 2, -sy / 2 + i / (float)divsY * sy, -sz / 2 + j / (float)divsZ * sz, divsX, i, j, divsY, divsZ);
+                    AddVertex(
+                        vertices,
+                        -sx / 2,
+                        -sy / 2 + i / (float)divsY * sy,
+                        -sz / 2 + j / (float)divsZ * sz,
+                        0, i, j, divsY, divsZ);
+                    AddVertex(
+                        vertices,
+                        +sx / 2,
+                        -sy / 2 + i / (float)divsY * sy,
+                        -sz / 2 + j / (float)divsZ * sz,
+                        divsX, i, j, divsY, divsZ);
                 }
             }
 
@@ -543,8 +563,18 @@ namespace MonoCollisionPipeline
             {
                 for (int j = 0; j != divsZ + 1; j++)
                 {
-                    AddVertex(vertices, -sx / 2 + i / (float)divsX * sx, -sy / 2, -sz / 2 + j / (float)divsZ * sz, i, 0, j, divsY, divsZ);
-                    AddVertex(vertices, -sx / 2 + i / (float)divsX * sx, +sy / 2, -sz / 2 + j / (float)divsZ * sz, i, divsY, j, divsY, divsZ);
+                    AddVertex(
+                        vertices,
+                        -sx / 2 + i / (float)divsX * sx,
+                        -sy / 2,
+                        -sz / 2 + j / (float)divsZ * sz,
+                        i, 0, j, divsY, divsZ);
+                    AddVertex(
+                        vertices,
+                        -sx / 2 + i / (float)divsX * sx,
+                        +sy / 2,
+                        -sz / 2 + j / (float)divsZ * sz,
+                        i, divsY, j, divsY, divsZ);
                 }
             }
 
@@ -552,10 +582,14 @@ namespace MonoCollisionPipeline
             {
                 for (int j = 0; j != divsY; j++)
                 {
-                    AddFace(vertices[GetVertexIndex(i, j, 0, divsY, divsZ)], vertices[GetVertexIndex(i, j + 1, 0, divsY, divsZ)], 
-                        vertices[GetVertexIndex(i + 1, j + 1, 0, divsY, divsZ)], vertices[GetVertexIndex(i + 1, j, 0, divsY, divsZ)]);
-                    AddFace(vertices[GetVertexIndex(i, j, divsZ, divsY, divsZ)], vertices[GetVertexIndex(i + 1, j, divsZ, divsY, divsZ)], 
-                        vertices[GetVertexIndex(i + 1, j + 1, divsZ, divsY, divsZ)], vertices[GetVertexIndex(i, j + 1, divsZ, divsY, divsZ)]);
+                    AddFace(vertices[GetVertexIndex(i, j, 0, divsY, divsZ)],
+                        vertices[GetVertexIndex(i, j + 1, 0, divsY, divsZ)],
+                        vertices[GetVertexIndex(i + 1, j + 1, 0, divsY, divsZ)],
+                        vertices[GetVertexIndex(i + 1, j, 0, divsY, divsZ)]);
+                    AddFace(vertices[GetVertexIndex(i, j, divsZ, divsY, divsZ)],
+                        vertices[GetVertexIndex(i + 1, j, divsZ, divsY, divsZ)],
+                        vertices[GetVertexIndex(i + 1, j + 1, divsZ, divsY, divsZ)],
+                        vertices[GetVertexIndex(i, j + 1, divsZ, divsY, divsZ)]);
                 }
             }
 
@@ -563,10 +597,14 @@ namespace MonoCollisionPipeline
             {
                 for (int j = 0; j != divsZ; j++)
                 {
-                    AddFace(vertices[GetVertexIndex(0, i, j, divsY, divsZ)], vertices[GetVertexIndex(0, i, j + 1, divsY, divsZ)], 
-                        vertices[GetVertexIndex(0, i + 1, j + 1, divsY, divsZ)], vertices[GetVertexIndex(0, i + 1, j, divsY, divsZ)]);
-                    AddFace(vertices[GetVertexIndex(divsX, i, j, divsY, divsZ)], vertices[GetVertexIndex(divsX, i + 1, j, divsY, divsZ)], 
-                        vertices[GetVertexIndex(divsX, i + 1, j + 1, divsY, divsZ)], vertices[GetVertexIndex(divsX, i, j + 1, divsY, divsZ)]);
+                    AddFace(vertices[GetVertexIndex(0, i, j, divsY, divsZ)],
+                        vertices[GetVertexIndex(0, i, j + 1, divsY, divsZ)],
+                        vertices[GetVertexIndex(0, i + 1, j + 1, divsY, divsZ)],
+                        vertices[GetVertexIndex(0, i + 1, j, divsY, divsZ)]);
+                    AddFace(vertices[GetVertexIndex(divsX, i, j, divsY, divsZ)],
+                        vertices[GetVertexIndex(divsX, i + 1, j, divsY, divsZ)],
+                        vertices[GetVertexIndex(divsX, i + 1, j + 1, divsY, divsZ)],
+                        vertices[GetVertexIndex(divsX, i, j + 1, divsY, divsZ)]);
                 }
             }
 
@@ -574,10 +612,14 @@ namespace MonoCollisionPipeline
             {
                 for (int j = 0; j != divsZ; j++)
                 {
-                    AddFace(vertices[GetVertexIndex(i, 0, j, divsY, divsZ)], vertices[GetVertexIndex(i + 1, 0, j, divsY, divsZ)], 
-                        vertices[GetVertexIndex(i + 1, 0, j + 1, divsY, divsZ)], vertices[GetVertexIndex(i, 0, j + 1, divsY, divsZ)]);
-                    AddFace(vertices[GetVertexIndex(i, divsY, j, divsY, divsZ)], vertices[GetVertexIndex(i, divsY, j + 1, divsY, divsZ)], 
-                        vertices[GetVertexIndex(i + 1, divsY, j + 1, divsY, divsZ)], vertices[GetVertexIndex(i + 1, divsY, j, divsY, divsZ)]);
+                    AddFace(vertices[GetVertexIndex(i, 0, j, divsY, divsZ)],
+                        vertices[GetVertexIndex(i + 1, 0, j, divsY, divsZ)],
+                        vertices[GetVertexIndex(i + 1, 0, j + 1, divsY, divsZ)],
+                        vertices[GetVertexIndex(i, 0, j + 1, divsY, divsZ)]);
+                    AddFace(vertices[GetVertexIndex(i, divsY, j, divsY, divsZ)],
+                        vertices[GetVertexIndex(i, divsY, j + 1, divsY, divsZ)],
+                        vertices[GetVertexIndex(i + 1, divsY, j + 1, divsY, divsZ)],
+                        vertices[GetVertexIndex(i + 1, divsY, j, divsY, divsZ)]);
                 }
             }
 
@@ -639,7 +681,7 @@ namespace MonoCollisionPipeline
                     texCoordChannel.AddRange(new Vector2[] { tlist[j + 2], tlist[j + 1], tlist[0] });
                     normalChannel.AddRange(new Vector3[] { nlist[j + 2], nlist[j + 1], nlist[0] });
                 }
-                if (geometry.Vertices.VertexCount > 32000)
+                if (geometry.Vertices.VertexCount >= 32000)
                 {
                     geometry.Vertices.Channels.Add<Vector3>(VertexChannelNames.Normal(0), normalChannel);
                     geometry.Vertices.Channels.Add<Vector2>(VertexChannelNames.TextureCoordinate(0), texCoordChannel);

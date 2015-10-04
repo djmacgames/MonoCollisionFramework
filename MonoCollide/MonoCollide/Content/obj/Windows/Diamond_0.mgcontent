@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Dev/MonoCollide/MonoCollide/Content/Diamond.png</SourceFile>
-  <SourceTime>2014-11-19T20:11:48-05:00</SourceTime>
+  <SourceTime>2015-10-03T17:18:06.2828092-04:00</SourceTime>
   <DestFile>C:/Dev/MonoCollide/MonoCollide/Content/bin/Windows/Diamond_0.xnb</DestFile>
-  <DestTime>2015-10-01T23:46:48.0206656-04:00</DestTime>
+  <DestTime>2015-10-03T19:13:03.5039982-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T13:14:44-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
