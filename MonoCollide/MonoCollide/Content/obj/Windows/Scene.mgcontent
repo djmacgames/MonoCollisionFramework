@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Dev/MonoCollide/MonoCollide/Content/Scene.txt</SourceFile>
-  <SourceTime>2015-10-03T19:32:49.5089848-04:00</SourceTime>
+  <SourceTime>2015-10-04T14:55:36.6146963-04:00</SourceTime>
   <DestFile>C:/Dev/MonoCollide/MonoCollide/Content/bin/Windows/Scene.xnb</DestFile>
-  <DestTime>2015-10-03T20:50:25.7089499-04:00</DestTime>
+  <DestTime>2015-10-04T17:28:06.5098272-04:00</DestTime>
   <Importer>TextModelImporter</Importer>
-  <ImporterTime>2015-10-03T20:50:24.8475041-04:00</ImporterTime>
+  <ImporterTime>2015-10-04T17:28:05.6805858-04:00</ImporterTime>
   <Processor>ModelProcessor</Processor>
   <ProcessorTime>2015-04-29T13:14:44-04:00</ProcessorTime>
   <Parameters>

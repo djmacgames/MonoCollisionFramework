@@ -8,7 +8,7 @@
 # translate x y z
 # scale x y z
 # rotate x y z
-# rotateOrientation upX upY upZ rightX rightY rightZ
+# rotateOrientation upX upY upZ rightX rightY rightZ elevation
 # rotateAxisAngle x y z angle
 # build name materialName
 

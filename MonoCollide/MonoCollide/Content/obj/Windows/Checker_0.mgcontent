@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Dev/MonoCollide/MonoCollide/Content/Checker.png</SourceFile>
+  <SourceFile>Checker.png</SourceFile>
   <SourceTime>2015-09-24T19:16:15.9478051-04:00</SourceTime>
   <DestFile>C:/Dev/MonoCollide/MonoCollide/Content/bin/Windows/Checker_0.xnb</DestFile>
-  <DestTime>2015-10-03T19:13:03.8590185-04:00</DestTime>
+  <DestTime>2015-10-04T15:53:10.1766207-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T13:14:44-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
