@@ -66,7 +66,7 @@ namespace MonoPlanet
                     BoundingBox bounds = MeshHelper.GetBounds(mesh);
 
                     platformer.Position = (bounds.Max + bounds.Min) / 2;
-                    platformer.CollisionRadius = (bounds.Max - bounds.Min).Length() / 2 * 0.9f;
+                    platformer.CollisionRadius = (bounds.Max.Y - bounds.Min.Y) / 2;
                 }
                 else
                 {

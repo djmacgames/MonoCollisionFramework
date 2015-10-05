@@ -68,7 +68,7 @@ namespace MonoCollide
                     BoundingBox b = MeshHelper.GetBounds(mesh);
 
                     platformer.Position = (b.Max + b.Min) / 2;
-                    platformer.CollisionRadius = (b.Max - b.Min).Length() / 2 * 0.9f;
+                    platformer.CollisionRadius = (b.Max.Y - b.Min.Y) / 2;
                 }
                 else
                 {

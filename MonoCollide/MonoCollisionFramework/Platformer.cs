@@ -32,6 +32,7 @@ namespace MonoCollisionFramework
         private float angularVelocity = -180;
         private float angle = 0;
         private float groundSlope = 0.45f;
+        private float groundGravity = -2;
 
         public Platformer(Collider collider)
         {
@@ -181,6 +182,12 @@ namespace MonoCollisionFramework
             set { groundSlope = value; }
         }
 
+        public float GroundGravity
+        {
+            get { return groundGravity; }
+            set { groundGravity = value; }
+        }
+
         public virtual Matrix CalcWorld(float scale, Vector3 zeroTranslation)
         {
             return
@@ -291,7 +298,7 @@ namespace MonoCollisionFramework
         {
             if (onGround)
             {
-                velocity.Y = -2 / (float)gameTime.ElapsedGameTime.TotalSeconds;
+                velocity.Y = groundGravity / (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             else
             {
@@ -301,9 +308,9 @@ namespace MonoCollisionFramework
 
             Vector3 d = velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (d.Length() > collisionRadius)
+            if (d.Length() > collisionRadius * 0.9f)
             {
-                d = Vector3.Normalize(d) * collisionRadius;
+                d = Vector3.Normalize(d) * collisionRadius * 0.9f;
             }
             d = Vector3.TransformNormal(d, orientation);
 
@@ -312,7 +319,7 @@ namespace MonoCollisionFramework
             onGround = false;
             orientation = Matrix.Identity;
             groundNormal = Vector3.Zero;
-            collider.Collide(ref position, collisionRadius * 1.1f, this);
+            collider.Collide(ref position, collisionRadius, this);
 
             Vector3 r, u, f;
 
