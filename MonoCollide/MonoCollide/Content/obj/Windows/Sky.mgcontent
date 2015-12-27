@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Dev/MonoCollide/MonoCollide/Content/Sky.png</SourceFile>
-  <SourceTime>2015-10-03T18:52:46.6949534-04:00</SourceTime>
+  <SourceTime>2015-12-26T10:01:55.2121457-05:00</SourceTime>
   <DestFile>C:/Dev/MonoCollide/MonoCollide/Content/bin/Windows/Sky.xnb</DestFile>
-  <DestTime>2015-10-03T19:13:04.1220336-04:00</DestTime>
+  <DestTime>2015-12-27T11:04:47.8094967-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T13:14:44-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

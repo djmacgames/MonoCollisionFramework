@@ -126,7 +126,7 @@ namespace MonoCollisionFramework
                     }
                     if (collided)
                     {
-                        if (contact.ContactMade(this, triangleSelector, iTriangle, iPoint, iEdge))
+                        if (contact.ContactMade(triangleSelector, iTriangle, iPoint, iEdge))
                         {
                             position = resolvedPosition;
                         }

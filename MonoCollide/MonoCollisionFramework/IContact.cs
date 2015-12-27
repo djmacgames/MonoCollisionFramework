@@ -5,6 +5,6 @@ namespace MonoCollisionFramework
 {
     public interface IContact
     {
-        bool ContactMade(Collider collider, ITriangleSelector selector, Triangle triangle, Vector3 iPoint, int edge);
+        bool ContactMade(ITriangleSelector selector, Triangle triangle, Vector3 iPoint, int edge);
     }
 }

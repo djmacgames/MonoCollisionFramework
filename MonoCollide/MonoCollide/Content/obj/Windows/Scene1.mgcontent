@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Dev/MonoCollide/MonoPlanet/Content/Scene.txt</SourceFile>
-  <SourceTime>2015-10-04T17:18:40.0268461-04:00</SourceTime>
-  <DestFile>C:/Dev/MonoCollide/MonoPlanet/Content/bin/Windows/Scene.xnb</DestFile>
-  <DestTime>2015-10-04T22:20:29.4550836-04:00</DestTime>
-  <Importer>TextModelImporter</Importer>
-  <ImporterTime>2015-10-04T22:20:27.8215936-04:00</ImporterTime>
+  <SourceFile>C:/Dev/MonoCollide/MonoCollide/Content/Scene1.obj</SourceFile>
+  <SourceTime>2015-12-27T11:04:27.5836959-05:00</SourceTime>
+  <DestFile>C:/Dev/MonoCollide/MonoCollide/Content/bin/Windows/Scene1.xnb</DestFile>
+  <DestTime>2015-12-27T11:39:50.162361-05:00</DestTime>
+  <Importer>OBJModelImporter</Importer>
+  <ImporterTime>2015-12-27T11:39:48.0882156-05:00</ImporterTime>
   <Processor>ModelProcessor</Processor>
   <ProcessorTime>2015-04-29T13:14:44-04:00</ProcessorTime>
   <Parameters>
@@ -66,8 +66,7 @@
   </Parameters>
   <Dependencies />
   <BuildAsset>
-    <string>C:/Dev/MonoCollide/MonoPlanet/Content/bin/Windows/Grass_0.xnb</string>
-    <string>C:/Dev/MonoCollide/MonoPlanet/Content/bin/Windows/Checker_0.xnb</string>
+    <string>C:/Dev/MonoCollide/MonoCollide/Content/bin/Windows/Floor10_0.xnb</string>
   </BuildAsset>
   <BuildOutput />
 </PipelineBuildEvent>

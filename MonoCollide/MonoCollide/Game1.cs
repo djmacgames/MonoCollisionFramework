@@ -53,22 +53,30 @@ namespace MonoCollide
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            scene = Content.Load<Model>("Scene");
+            scene = Content.Load<Model>("Scene1");
 
             foreach (ModelMesh mesh in scene.Meshes)
             {
+                BoundingBox b = MeshHelper.GetBounds(mesh);
+
+                mesh.Tag = b;
+
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    effect.EnableDefaultLighting();
-                    effect.PreferPerPixelLighting = true;
+                    effect.LightingEnabled = true;
+                    effect.DirectionalLight0.Enabled = true;
+                    effect.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1);
+                    effect.DirectionalLight0.SpecularColor = new Vector3(1, 1, 1);
+                    effect.DirectionalLight0.Direction = new Vector3(-1, -0.75f, -0.5f);
+                    effect.DirectionalLight1.Enabled = false;
+                    effect.DirectionalLight2.Enabled = false;
+                    effect.PreferPerPixelLighting = false;
                     effect.AmbientLightColor = Vector3.Zero;
                 }
-                if (mesh.Name == "ball")
+                if (mesh.Name == "player")
                 {
-                    BoundingBox b = MeshHelper.GetBounds(mesh);
-
                     platformer.Position = (b.Max + b.Min) / 2;
-                    platformer.CollisionRadius = (b.Max.Y - b.Min.Y) / 2;
+                    platformer.CollisionRadius = (b.Max.Y - b.Min.Y) / 2 + 5;
                 }
                 else
                 {
@@ -86,7 +94,7 @@ namespace MonoCollide
 
             platformer.JumpHeight = 600;
             platformer.HorizontalSpeed = 200;
-            platformer.JumpHorizontalSpeed = 300;
+            platformer.JumpHorizontalSpeed = 400;
 
             font = Content.Load<SpriteFont>("Font");
             sky = Content.Load<Texture2D>("Sky");
@@ -108,9 +116,6 @@ namespace MonoCollide
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
             // TODO: Add your update logic here
 
             platformer.HandleMouseAndKeyboard(GraphicsDevice.Viewport);
@@ -134,7 +139,8 @@ namespace MonoCollide
         {
             string[] lines = new string[]
             {
-                "Tested " + platformer.Collider.TrianglesTested + " of " + triangeCount + " triangle(s), in " + platformer.Collider.LoopCount + " loop(s)",
+                "Tested " + platformer.Collider.TrianglesTested + " of " + triangeCount + " triangle(s), in " +
+                    platformer.Collider.LoopCount + " loop(s)",
                 "Frame rate = " + (int)(1.0f / gameTime.ElapsedGameTime.TotalSeconds),
                 "Press space key to jump",
                 "Press and hold left mouse button to move in the direction of the mouse"
@@ -162,25 +168,31 @@ namespace MonoCollide
                 position.Y = 0;
             }
 
-            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(60), GraphicsDevice.Viewport.AspectRatio, 1, 5000);
+            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(60),
+                GraphicsDevice.Viewport.AspectRatio, 1, 5000);
             Matrix view = Matrix.CreateLookAt(position + platformer.Offset, position, Vector3.UnitY);
+            BoundingFrustum frustum = new BoundingFrustum(view * projection);
 
             foreach (ModelMesh mesh in scene.Meshes)
             {
-                foreach (IEffectMatrices effect in mesh.Effects)
+                BoundingBox b = (BoundingBox)mesh.Tag;
+                Matrix world = Matrix.Identity;
+
+                if (mesh.Name == "player")
                 {
-                    effect.Projection = projection;
-                    effect.View = view;
-                    if (mesh.Name == "ball")
-                    {
-                        effect.World = platformer.CalcWorld(1, -startPosition);
-                    }
-                    else
-                    {
-                        effect.World = Matrix.Identity;
-                    }
+                    world = platformer.CalcWorld(1, -startPosition);
+                    b = BoundingBoxHelper.Transform(b, world);
                 }
-                mesh.Draw();
+                if (frustum.Contains(b) != ContainmentType.Disjoint)
+                {
+                    foreach (IEffectMatrices effect in mesh.Effects)
+                    {
+                        effect.Projection = projection;
+                        effect.View = view;
+                        effect.World = world;
+                    }
+                    mesh.Draw();
+                }
             }
 
             spriteBatch.Begin(SpriteSortMode.Immediate);

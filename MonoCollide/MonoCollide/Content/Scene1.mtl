@@ -1,0 +1,6 @@
+# Exported from DeleD's Wavefront OBJ Exporter 1.0
+# Visit http://www.delgine.com for more information.
+newmtl Orange
+Kd 1 0.635294117647059 0
+newmtl material17
+map_Kd Floor10.jpg

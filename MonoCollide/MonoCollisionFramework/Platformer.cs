@@ -12,14 +12,10 @@ namespace MonoCollisionFramework
         private Vector3 offset = new Vector3(0, 200, 200);
         private Vector3 velocity = Vector3.Zero;
         private Vector3 groundNormal = Vector3.Zero;
-        private Vector3 right = Vector3.Right;
-        private Vector3 up = Vector3.Up;
-        private Vector3 forward = Vector3.Forward;
         private Matrix orientation = Matrix.Identity;
         private Matrix directionMatrix = Matrix.Identity;
         private bool onGround = false;
         private bool spaceDown = false;
-        private bool planetCollision = false;
         private bool jumpEnabled = true;
         private float jump = 0;
         private float jumpHeight = 800;
@@ -68,24 +64,6 @@ namespace MonoCollisionFramework
             set { groundNormal = value; }
         }
 
-        public Vector3 Right
-        {
-            get { return right; }
-            set { right = value; }
-        }
-
-        public Vector3 Up
-        {
-            get { return up; }
-            set { up = value; }
-        }
-
-        public Vector3 Forward
-        {
-            get { return forward; }
-            set { forward = value; }
-        }
-
         public Matrix Orientation
         {
             get { return orientation; }
@@ -102,12 +80,6 @@ namespace MonoCollisionFramework
         {
             get { return onGround; }
             set { onGround = value; }
-        }
-
-        public bool PlanetCollision
-        {
-            get { return planetCollision; }
-            set { planetCollision = value; }
         }
 
         public bool JumpEnabled
@@ -198,7 +170,7 @@ namespace MonoCollisionFramework
                 Matrix.CreateTranslation(position);
         }
 
-        public virtual bool ContactMade(Collider collider, ITriangleSelector selector, Triangle triangle, Vector3 iPoint, int edge)
+        public virtual bool ContactMade(ITriangleSelector selector, Triangle triangle, Vector3 iPoint, int edge)
         {
             Vector3 n = triangle.Normal;
 
@@ -208,15 +180,6 @@ namespace MonoCollisionFramework
             }
 
             float d = n.Y;
-
-            up = Vector3.Normalize(position);
-            forward = Vector3.Normalize(Vector3.Cross(up, right));
-            right = Vector3.Normalize(Vector3.Cross(forward, up));
-
-            if (planetCollision)
-            {
-                d = Vector3.Dot(n, up);
-            }
 
             if (d > groundSlope)
             {
@@ -272,24 +235,17 @@ namespace MonoCollisionFramework
 
                 if (len > float.Epsilon)
                 {
+                    Vector3 f = offset;
+                    Vector3 r;
+
                     dx /= len;
                     dy /= len;
 
-                    if (planetCollision)
-                    {
-                        velocity -= (dx * Vector3.Right * speed + dy * Vector3.Forward * speed);
-                    }
-                    else
-                    {
-                        Vector3 f = offset;
-                        Vector3 r;
+                    f.Y = 0;
+                    f.Normalize();
+                    r = Vector3.Normalize(Vector3.Cross(f, Vector3.Up));
 
-                        f.Y = 0;
-                        f.Normalize();
-                        r = Vector3.Normalize(Vector3.Cross(f, Vector3.Up));
-
-                        velocity -= dx * r * speed + dy * f * speed;
-                    }
+                    velocity -= dx * r * speed + dy * f * speed;
                 }
             }
         }
@@ -323,22 +279,10 @@ namespace MonoCollisionFramework
 
             Vector3 r, u, f;
 
-            up = Vector3.Normalize(position);
-            forward = Vector3.Normalize(Vector3.Cross(up, right));
-            right = Vector3.Normalize(Vector3.Cross(forward, up));
-
             if (onGround)
             {
                 u = Vector3.Normalize(groundNormal);
-
-                if (planetCollision)
-                {
-                    r = right;
-                }
-                else
-                {
-                    r = Vector3.UnitX;
-                }
+                r = Vector3.UnitX;
                 f = Vector3.Normalize(Vector3.Cross(u, r));
                 r = Vector3.Normalize(Vector3.Cross(f, u));
 
@@ -346,36 +290,15 @@ namespace MonoCollisionFramework
                 orientation.Up = u;
                 orientation.Forward = f;
             }
-            else if (planetCollision)
-            {
-                orientation.Right = right;
-                orientation.Up = up;
-                orientation.Forward = forward;
-            }
             f = velocity;
             f.Y = 0;
 
             if (f.Length() > 0.001f)
             {
-                if (planetCollision)
-                {
-                    Matrix m = Matrix.Identity;
+                u = Vector3.Up;
+                f.Normalize();
+                r = Vector3.Normalize(Vector3.Cross(f, u));
 
-                    m.Right = right;
-                    m.Up = up;
-                    m.Forward = forward;
-                    f = Vector3.TransformNormal(f, m);
-                    f.Normalize();
-                    u = up;
-                    r = Vector3.Normalize(Vector3.Cross(f, u));
-                    u = Vector3.Normalize(Vector3.Cross(r, f));
-                }
-                else
-                {
-                    u = Vector3.Up;
-                    f.Normalize();
-                    r = Vector3.Normalize(Vector3.Cross(f, u));
-                }
                 directionMatrix.Right = r;
                 directionMatrix.Up = u;
                 directionMatrix.Forward = f;

@@ -5,7 +5,7 @@
   <Config />
   <SourceFiles>
     <File>C:/Dev/MonoCollide/MonoCollide/Content/Font.spritefont</File>
-    <File>C:/Dev/MonoCollide/MonoCollide/Content/Scene.txt</File>
     <File>C:/Dev/MonoCollide/MonoCollide/Content/Sky.png</File>
+    <File>C:/Dev/MonoCollide/MonoCollide/Content/Scene1.obj</File>
   </SourceFiles>
 </SourceFileCollection>

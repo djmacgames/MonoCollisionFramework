@@ -42,7 +42,8 @@ namespace MonoCollisionFramework
                         {
                             Triangle t = triangles[j];
 
-                            if (b.Contains(t.A) == ContainmentType.Contains && b.Contains(t.B) == ContainmentType.Contains && b.Contains(t.C) == ContainmentType.Contains)
+                            if (b.Contains(t.A) == ContainmentType.Contains && 
+                                b.Contains(t.B) == ContainmentType.Contains && b.Contains(t.C) == ContainmentType.Contains)
                             {
                                 add.Add(t);
                             }
